@@ -4,8 +4,8 @@
 
 ```
 # jsDelivr+github链接
-https://cdn.jsdelivr.net/gh/[GithubUserName]/[AssetsRepo]/img/index.png
+https://cdn.jsdelivr.net/gh/codeboy-zuo/npm/img/badge/icp.svg
 # jsDelivr+npm链接
-https://cdn.jsdelivr.net/npm/[NpmPackageName]/img/index.png
-# 可自行选择节点
+https://cdn.jsdelivr.net/npm/codeboy-static/img/badge/icp.svg
+# 也可自行选择节点
 ```
