@@ -1,0 +1,23 @@
+{
+  "name": "codeboy-static",
+  "version": "1.0.0",
+  "description": "zuo static file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codeboy-zuo/npm.git"
+  },
+  "keywords": [
+    "static",
+    "file"
+  ],
+  "author": "zuo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codeboy-zuo/npm/issues"
+  },
+  "homepage": "https://github.com/codeboy-zuo/npm#readme"
+}
