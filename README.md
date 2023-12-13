@@ -1,6 +1,6 @@
 # this is a push method
 
-
+```
 # 将更改提交
 git add .
 git commit -m "npm publish"
@@ -8,3 +8,4 @@ git commit -m "npm publish"
 npm version patch
 # 推送至github触发action
 git push
+```
