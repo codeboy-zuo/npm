@@ -1,11 +1,11 @@
-# 这是一个图床
+# This is a picture bed.
 
-## 引用方法
+## Quote method
 
 ```
-# jsDelivr+github链接
+# jsDelivr+github
 https://cdn.jsdelivr.net/gh/codeboy-zuo/npm/img/badge/icp.svg
-# jsDelivr+npm链接
+# jsDelivr+npm
 https://cdn.jsdelivr.net/npm/codeboy-static/img/badge/icp.svg
-# 也可自行选择节点
+# you can also choose other nodes.
 ```
