@@ -9,7 +9,10 @@ https://cdn.jsdelivr.net/gh/codeboy-zuo/npm/img/badge/icp.svg
 # jsDelivr+npm
 https://cdn.jsdelivr.net/npm/codeboy-static/img/badge/icp.svg
 
-#https://cdn.jsdelivr.net/npm/:package@:version/:file
+# jsd.onmicrosoft.cn (refer to jsDelivr)
+https://jsd.onmicrosoft.cn/npm/codeboy-static/img/badge/icp.svg
+
+# https://cdn.jsdelivr.net/npm/:package@:version/:file
 https://cdn.jsdelivr.net/npm/codeboy-static@1.0.9/img/badge/icp.svg
 
 # https://cdn.cbd.int/:package@:version/:file
