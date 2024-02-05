@@ -1,5 +1,4 @@
-# This is a picture bed.
-
+# Assets of My Blog
 ## Quote method
 
 ```
