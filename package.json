@@ -1,6 +1,6 @@
 {
   "name": "codeboy-static",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "zuo static file",
   "main": "index.js",
   "scripts": {
