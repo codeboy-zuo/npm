@@ -92,6 +92,26 @@
             radius : 5,
         }
     }
+    Seed = function(tree, point, scale, color) {
+        this.tree = tree;
+
+        var scale = scale || 1
+        var color = color || '#FF0000';
+
+        this.heart = {
+            point  : point,
+            scale  : scale,
+            color  : color,
+            figure : new Heart(),
+        }
+
+        this.cirle = {
+            point  : point,
+            scale  : scale,
+            color  : color,
+            radius : 5,
+        }
+    }
     Seed.prototype = {
         draw: function() {
             this.drawHeart();
@@ -163,20 +183,23 @@
             ctx.scale(scale, scale);
             ctx.moveTo(0, 0);
     	    ctx.lineTo(15, 15);
-    	    ctx.lineTo(60, 15);
+    	    ctx.lineTo(120, 15);
             ctx.stroke();
 
             ctx.moveTo(0, 0);
             ctx.scale(0.75, 0.75);
-            ctx.font = "12px 微软雅黑,Verdana"; // 字号肿么没有用? (ˉ(∞)ˉ)
-            ctx.fillText("丁猪头生日快乐", 23, 10);
+            ctx.font = "12px 微软雅黑,Verdana"; 
+            ctx.fillText("丁猪头，生日快乐嘿嘿", 23, 10);
             ctx.restore();
         },
         clear: function() {
-            var ctx = this.tree.ctx, cirle = this.cirle;
+           var ctx = this.tree.ctx, cirle = this.cirle;
             var point = cirle.point, scale = cirle.scale, radius = 26;
             var w = h = (radius * scale);
-            ctx.clearRect(point.x - w, point.y - h, 4 * w, 4 * h);
+            // 计算文字的宽度
+            var textWidth = ctx.measureText("丁猪头，生日快乐嘿嘿").width * 0.75 * this.heart.scale;
+            // 清除区域包括心形和文字部分
+            ctx.clearRect(point.x - w, point.y - h, 4 * w + textWidth, 4 * h);
         },
         hover: function(x, y) {
             var ctx = this.tree.ctx;
