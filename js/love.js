@@ -92,6 +92,26 @@
             radius : 5,
         }
     }
+        Seed = function(tree, point, scale, color) {
+        this.tree = tree;
+
+        var scale = scale || 1
+        var color = color || '#FF0000';
+
+        this.heart = {
+            point  : point,
+            scale  : scale,
+            color  : color,
+            figure : new Heart(),
+        }
+
+        this.cirle = {
+            point  : point,
+            scale  : scale,
+            color  : color,
+            radius : 5,
+        }
+    }
     Seed.prototype = {
         draw: function() {
             this.drawHeart();
@@ -168,17 +188,40 @@
 
             ctx.moveTo(0, 0);
             ctx.scale(0.75, 0.75);
-            ctx.font = "12px 微软雅黑,Verdana"; // 字号肿么没有用? (ˉ(∞)ˉ)
+            ctx.font = "12px 微软雅黑,Verdana"; 
             ctx.fillText("丁猪头，生日快乐嘿嘿", 23, 10);
             ctx.restore();
         },
-        clear: function() {
-            var ctx = this.tree.ctx, cirle = this.cirle;
+         clear: function() {
+            var ctx = this.tree.ctx, cirle = this.cirle, heart = this.heart;
             var point = cirle.point, scale = cirle.scale, radius = 26;
             var w = h = (radius * scale);
+    
+            // 获取心形的实际边界
+            var minX = point.x - w;
+            var minY = point.y - h;
+            var maxX = point.x + w;
+            var maxY = point.y + h;
+            
+             // 计算文本的宽度和高度
             var textWidth = ctx.measureText("丁猪头，生日快乐嘿嘿").width * 0.75 * this.heart.scale;
-            // 清除区域包括心形和文字部分
-            ctx.clearRect(point.x - w, point.y - h, 4 * w + textWidth, 4 * h);
+            var textHeight = 12 * 0.75 * this.heart.scale;
+            
+            // 计算文本的边界
+            var textMinX = point.x + 15 * heart.scale; // 横线起点
+            var textMaxX = textMinX + textWidth; // 横线终点
+            var textMinY = point.y + 15 * heart.scale * 0.5; //文本起始高度
+            var textMaxY = textMinY + textHeight; // 文本高度
+           
+            // 合并心形区域和文本区域
+            minX = Math.min(minX, textMinX);
+            minY = Math.min(minY, textMinY);
+            maxX = Math.max(maxX, textMaxX);
+            maxY = Math.max(maxY, textMaxY);
+            
+            
+            // 使用更精确的边界清除区域
+            ctx.clearRect(minX, minY, maxX - minX, maxY - minY);
         },
         hover: function(x, y) {
             var ctx = this.tree.ctx;
