@@ -177,7 +177,8 @@
             var point = cirle.point, scale = cirle.scale, radius = 26;
             var w = h = (radius * scale);
             var textWidth = ctx.measureText("丁猪头，生日快乐嘿嘿").width * 0.75 * this.heart.scale;
-            ctx.clearRect(point.x - w, point.y - h, 4 * w, 4 * h);
+            // 清除区域包括心形和文字部分
+            ctx.clearRect(point.x - w, point.y - h, 4 * w + textWidth, 4 * h);
         },
         hover: function(x, y) {
             var ctx = this.tree.ctx;
