@@ -125,6 +125,7 @@
         },
         move: function(x, y) {
             this.clear();
+            this.tree.render(); // 重新渲染整个场景
             this.drawCirle();
             this.addPosition(x, y);
         },
@@ -136,6 +137,7 @@
         },
         scale: function(scale) {
             this.clear();
+            this.tree.render(); // 重新渲染整个场景
             this.drawCirle();
             this.drawHeart();
             this.setHeartScale(scale);
@@ -188,40 +190,15 @@
 
             ctx.moveTo(0, 0);
             ctx.scale(0.75, 0.75);
-            ctx.font = "12px 微软雅黑,Verdana"; 
+            ctx.font = "12px 微软雅黑,Verdana"; // 字号肿么没有用? (ˉ(∞)ˉ)
             ctx.fillText("丁猪头，生日快乐嘿嘿", 23, 10);
             ctx.restore();
         },
-         clear: function() {
-            var ctx = this.tree.ctx, cirle = this.cirle, heart = this.heart;
+        clear: function() {
+            var ctx = this.tree.ctx, cirle = this.cirle;
             var point = cirle.point, scale = cirle.scale, radius = 26;
             var w = h = (radius * scale);
-    
-            // 获取心形的实际边界
-            var minX = point.x - w;
-            var minY = point.y - h;
-            var maxX = point.x + w;
-            var maxY = point.y + h;
-            
-             // 计算文本的宽度和高度
-            var textWidth = ctx.measureText("丁猪头，生日快乐嘿嘿").width * 0.75 * this.heart.scale;
-            var textHeight = 12 * 0.75 * this.heart.scale;
-            
-            // 计算文本的边界
-            var textMinX = point.x + 15 * heart.scale; // 横线起点
-            var textMaxX = textMinX + textWidth; // 横线终点
-            var textMinY = point.y + 15 * heart.scale * 0.5; //文本起始高度
-            var textMaxY = textMinY + textHeight; // 文本高度
-           
-            // 合并心形区域和文本区域
-            minX = Math.min(minX, textMinX);
-            minY = Math.min(minY, textMinY);
-            maxX = Math.max(maxX, textMaxX);
-            maxY = Math.max(maxY, textMaxY);
-            
-            
-            // 使用更精确的边界清除区域
-            ctx.clearRect(minX, minY, maxX - minX, maxY - minY);
+            ctx.clearRect(point.x - w, point.y - h, 4 * w, 4 * h);
         },
         hover: function(x, y) {
             var ctx = this.tree.ctx;
@@ -374,7 +351,22 @@
                 }
             }
         },
+        render: function() {
+            var s = this;
+            s.ctx.clearRect(0, 0, s.width, s.height); // 先清除整个画布
+            s.footer.draw(); // 绘制底座
 
+            // 绘制树枝
+            for (var i = 0; i < s.branchs.length; i++) {
+               s.branchs[i].draw(s.branchs[i].len == s.branchs[i].length ? s.branchs[i].point3 : bezier([s.branchs[i].point1, s.branchs[i].point2, s.branchs[i].point3], s.branchs[i].len * s.branchs[i].t));
+            }
+
+            // 绘制花朵
+            for(var j=0; j< s.blooms.length; j++){
+               s.blooms[j].draw();
+           }
+            s.seed.draw(); // 绘制种子
+        },
         addBloom: function (bloom) {
             this.blooms.push(bloom);
         },
